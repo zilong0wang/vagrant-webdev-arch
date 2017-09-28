@@ -6,7 +6,7 @@ This Vagrantfile and related scripts are used to deploy an Arch Linux based web 
 
 * To start your development environment, please follow these commands:
 ```bash
-$ git clone https://github.com/zilong0wang/vagrant-webdev-arch.git 
+$ git clone git@github.com:zilong0wang/vagrant-webdev-arch.git 
 $ cd vagrant-webdev-arch
 $ vagrant up
 ```
