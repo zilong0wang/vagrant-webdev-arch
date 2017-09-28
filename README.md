@@ -6,12 +6,12 @@ This Vagrantfile and related scripts are used to deploy an Arch Linux based web 
 
 * To start your development environment, please follow these commands:
 ```bash
-$ git clone git@github.com:xinsnake/vagrant-webdev.git
-$ cd vagrant-webdev
+$ git clone https://github.com/zilong0wang/vagrant-webdev-arch.git 
+$ cd vagrant-webdev-arch
 $ vagrant up
 ```
 
-* After that please add the following lines to your "hosts" file:
+* After that please add the following lines to your /etc/hosts file:
 ```
 192.168.155.10      localhost.dev
 192.168.155.10      pm.localhost.dev
@@ -19,7 +19,7 @@ $ vagrant up
 
 * Default VirtualHost
   * localhost.dev (mapped to /vagrant/wwwroot)
-  * pm.localhost.dev (mapped to /usr/share/webapps/phpMyAdmin) default root password: password
+  * pm.localhost.dev (mapped to /usr/share/webapps/phpMyAdmin) default user: root password: password
 
 * Please note:
   * Keep your internet conection on and if you have a data limit please watch out. The base box will need around 400MB
@@ -41,6 +41,20 @@ __after__ the first "vagrant up". If you do it on the first "vagrant up", you wi
 * Other random tools like git, vim, wget, curl, tree...
 
 \* "Latest" means the latest version of the package(s) available on Arch Linux
+
+# Updates #
+
+* Update box version to 3.17.0719
+* PHP 7.1.10 has removed .so file. In your php.ini comment following lines 
+    
+    `extension=openssl.so`
+
+    `extension=mysql.so` 
+    
+    and uncomment follow line
+
+    `extension=mysqli.so`
+
 
 # Resources #
 

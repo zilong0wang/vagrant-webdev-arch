@@ -46,22 +46,32 @@ $script = <<'SCRIPT'
 
 SCRIPT
 
-VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure("2") do |config|
+  config.vm.box = "terrywang/archlinux"
+  config.vm.box_version = "3.17.0719"
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
-  config.vm.box = "terrywang/arch"
-  config.vm.box_url = "http://cloud.terry.im/vagrant/archlinux-x86_64.box"
   config.vm.provision "shell", inline: $script
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  #config.vm.synced_folder "./", "/vagrant/", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'fsc']
 
   config.vm.network "private_network", ip: "192.168.155.10", auto_config:false
+  #config.vm.synced_folder '.', '/vagrant', nfs: true
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
-    vb.customize ["modifyvm", :id, "--usb", "off"]
-    vb.customize ["modifyvm", :id, "--groups", "/xinsnake"]
+  config.vm.provider "virtualbox" do |v|
+    host = RbConfig::CONFIG['host_os']
+
+    # Give VM 1/4 system memory
+    if host =~ /darwin/
+      # sysctl returns Bytes and we need to convert to MB
+      mem = `sysctl -n hw.memsize`.to_i / 1024
+    elsif host =~ /linux/
+      # meminfo shows KB and we need to convert to MB
+      mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i
+    elsif host =~ /mswin|mingw|cygwin/
+      # Windows code via https://github.com/rdsubhas/vagrant-faster
+      mem = `wmic computersystem Get TotalPhysicalMemory`.split[1].to_i / 1024
+    end
+
+    mem = mem / 1024 / 4
+    v.customize ["modifyvm", :id, "--memory", mem]
   end
-
 end
