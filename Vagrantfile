@@ -48,8 +48,8 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "terrywang/archlinux"
-  config.vm.box_version = "3.17.0719"
-
+  config.vm.box_url = "https://vagrantcloud.com/terrywang/boxes/archlinux/versions/3.17.0719/providers/virtualbox.box"
+  
   config.vm.provision "shell", inline: $script
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
