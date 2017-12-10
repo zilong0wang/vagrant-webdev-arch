@@ -92,6 +92,10 @@ mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.vagrantbkp
 cp $CFG/etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf
 chmod 644 /etc/httpd/conf/httpd.conf
 
+cp $CFG/etc/httpd/conf/apache-selfsigned.crt /etc/httpd/conf/apache-selfsigned.crt
+cp $CFG/etc/httpd/conf/apache-selfsigned.key /etc/httpd/conf/apache-selfsigned.key
+chmod 644 /etc/httpd/conf/apache-selfsigned.*
+
 mv /etc/httpd/conf/extra/httpd-vhosts.conf /etc/httpd/conf/extra/httpd-vhosts.conf.vagrantbkp
 cp $CFG/etc/httpd/conf/extra/httpd-vhosts.conf /etc/httpd/conf/extra/httpd-vhosts.conf
 chmod 644 /etc/httpd/conf/extra/httpd-vhosts.conf
