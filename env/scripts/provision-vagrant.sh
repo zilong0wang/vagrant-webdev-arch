@@ -22,5 +22,6 @@ chmod 644 /home/vagrant/.bashrc
 echo
 echo '== Configuring Ruby Gems =='
 echo
+PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
 gem update
-gem install compass
+# gem install

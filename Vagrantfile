@@ -48,13 +48,13 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "terrywang/archlinux"
-  config.vm.box_url = "https://vagrantcloud.com/terrywang/boxes/archlinux/versions/3.17.0719/providers/virtualbox.box"
+  config.vm.box_url = "https://vagrantcloud.com/terrywang/boxes/archlinux/versions/3.17.1106/providers/virtualbox.box"
   
   config.vm.provision "shell", inline: $script
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
   config.vm.network "private_network", ip: "192.168.155.10", auto_config:false
-  #config.vm.synced_folder '.', '/vagrant', nfs: true
+  # config.vm.synced_folder '.', '/vagrant', nfs: true
 
   config.vm.provider "virtualbox" do |v|
     host = RbConfig::CONFIG['host_os']
