@@ -22,22 +22,16 @@ $script = <<'SCRIPT'
 
   echo 
   echo "======================================================================="
-  echo '                    _                       _                       '
-  echo '                   (_)                     | |                      '
-  echo '              __  ___ _ __  ___ _ __   __ _| | _____                '
-  echo '              \ \/ / | '"'"'_ \/ __| '"'"'_ \ / _` | |/ / _ \       '
-  echo '               >  <| | | | \__ \ | | | (_| |   <  __/               '
-  echo '              /_/\_\_|_| |_|___/_| |_|\__,_|_|\_\___|               '
   echo 
   echo "Provisioning finished, just few things you need to do before you start!"
   echo
   echo "  1. Please add the following lines to your hosts file:"
-  echo "      192.168.155.10    localhost.dev"
-  echo "      192.168.155.10    pm.localhost.dev"
+  echo "      192.168.155.10    local.vagrant.vm"
+  echo "      192.168.155.10    pm.vagrant.vm"
   echo
-  echo "  2. Try to visit http://localhost.dev/ and you should see phpinfo()"
+  echo "  2. Try to visit http://local.vagrant.vm/ and you should see phpinfo()"
   echo
-  echo "  3. Try to visit http://pm.localhost.dev/ and you should see phpMyAdmin"
+  echo "  3. Try to visit http://pm.vagrant.vm/ and you should see phpMyAdmin"
   echo
   echo "Provisioning took $(($diff / 60)) minutes and $(($diff % 60)) seconds"
   echo
